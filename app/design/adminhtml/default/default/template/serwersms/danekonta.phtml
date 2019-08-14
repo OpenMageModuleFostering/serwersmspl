@@ -66,13 +66,15 @@ $dane = $this->pokazDaneKonta();
         <td></td><td></td>
     </tr>
     <?php
-        foreach($dane['nadawcy'] as $nazwa => $status){
-            echo '
-                <tr>
-                    <td></td><td>'.$nazwa.'</td><td>'.$status.'</td>
-                </tr>
-                ';
-        }
+		if(is_array($dane['nadawcy']) and !empty($dane['nadawcy'])){
+			foreach($dane['nadawcy'] as $nazwa => $status){
+				echo '
+					<tr>
+						<td></td><td>'.$nazwa.'</td><td>'.$status.'</td>
+					</tr>
+					';
+			}
+		}
     ?>
     <tr>
         <td colspan="3" class="naglowek_serwersms">

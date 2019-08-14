@@ -13,14 +13,14 @@ class SerwerSMS_Sms_Model_Nadawcy extends Mage_Core_Model_Abstract {
         $api['login'] = $helper->getApiLogin();
         $api['haslo'] = $helper->getApiPassword();
         
-        $xml = $helper->ilosc_sms(array(login => $api['login'], haslo => $api['haslo']));
+        $xml = $helper->ilosc_sms(array('login' => $api['login'], 'haslo' => $api['haslo']));
         $dane = $helper->PrzetworzXML("ilosc_sms",$xml);
         
         if(is_array($dane)){
             
-            $xml2 = $helper->nazwa_nadawcy(array(login => $api['login'], haslo => $api['haslo'], operacja => 'lista'));
+            $xml2 = $helper->nazwa_nadawcy(array('login' => $api['login'], 'haslo' => $api['haslo'], 'operacja' => 'lista'));
             $nazwy_nadawcy = $helper->PrzetworzXML("nazwa_nadawcy",$xml2);
-            $xml3 = $helper->nazwa_nadawcy(array(login => $api['login'], haslo => $api['haslo'], operacja => 'lista', predefiniowane => 1));
+            $xml3 = $helper->nazwa_nadawcy(array('login' => $api['login'], 'haslo' => $api['haslo'], 'operacja' => 'lista', 'predefiniowane' => 1));
             $predefiniowane = $helper->PrzetworzXML("nazwa_nadawcy",$xml3);
 
             $nadawcy['wlasne'] = $nazwy_nadawcy;

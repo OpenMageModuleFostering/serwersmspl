@@ -1,9 +1,9 @@
 {
     "name": "OpenMageModuleFostering/SerwerSMSpl",
     "type": "magento-module",
-    "license": "Open-Software-License-(OSL)",
+    "license": "OSL",
     "homepage": "",
-    "description": "SMS notification module. | Moduł powiadomień SMS",
+    "description": "SMS notification module",
     "authors": [
     {
         "name": "SerwerSMS.pl",

@@ -74,7 +74,7 @@ class SerwerSMS_Sms_Model_Observer{
     
     public function wyslijsmsWstrzymanie(Varien_Event_Observer $observer){
         
-        $order = $observer->getOrder();
+        $order = $observer->getEvent()->getOrder();
         
         if ($order->getState() !== $order->getOrigData('state') && $order->getState() === Mage_Sales_Model_Order::STATE_HOLDED) {
             
@@ -107,7 +107,7 @@ class SerwerSMS_Sms_Model_Observer{
     
     public function wyslijsmsOdblokowanie(Varien_Event_Observer $observer){
         
-        $order = $observer->getOrder();
+        $order = $observer->getEvent()->getOrder();
         
         if ($order->getState() !== $order->getOrigData('state') && $order->getOrigData('state') === Mage_Sales_Model_Order::STATE_HOLDED) {
             
@@ -130,6 +130,41 @@ class SerwerSMS_Sms_Model_Observer{
                 $szablon = str_replace("#NAZWISKO#",$lastname, $szablon);
                 $szablon = str_replace("#NUMER#",$numer_zamowienia,$szablon);
                 $szablon = str_replace("#KWOTA#",$kwota,$szablon);
+
+                $wysylka['tresc'] = $szablon;
+
+                $this->getHelper()->wyslijSms($wysylka);
+            }
+        }
+    }
+    
+    public function wyslijsmsStatus(Varien_Event_Observer $observer){
+        
+        $order = $observer->getEvent()->getOrder();
+        
+        if($order->getStatus() !== $order->getOrigData('status')){
+            
+            $orderId = $order->getId();
+            $numer_zamowienia = $order->getIncrementId();
+            $shipping = $order->getShippingAddress();
+            $kwota = number_format($order->getData('grand_total'),2,',','');
+            $name = $shipping->getFirstname();
+            $lastname = $shipping->getLastname();
+            $status = $order->getStatusLabel();
+
+            $szablon = $this->getHelper()->szablonStatus();
+            $billingAddress = $order->getBillingAddress();
+            $numer = $billingAddress->getTelephone();
+            $numer = $this->getHelper()->korektaNumerow($numer);
+            $wysylka['odbiorcy'] = implode(",",$numer);
+            
+            if($this->getHelper()->wlaczonySerwerSMS() and $this->getHelper()->powiadomienieStatus()){
+
+                $szablon = str_replace("#IMIE#",$name,$szablon);
+                $szablon = str_replace("#NAZWISKO#",$lastname, $szablon);
+                $szablon = str_replace("#NUMER#",$numer_zamowienia,$szablon);
+                $szablon = str_replace("#KWOTA#",$kwota,$szablon);
+                $szablon = str_replace("#STATUS#",$status,$szablon);
 
                 $wysylka['tresc'] = $szablon;
 

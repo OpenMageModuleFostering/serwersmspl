@@ -39,12 +39,14 @@ class SerwerSMS_Sms_Helper_SerwerSMS {
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($postParams));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($curl,CURLOPT_TIMEOUT,60);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($curl, CURLOPT_TIMEOUT,60);
         $answer = curl_exec($curl);
         
 		if (curl_errno($curl)) {
 		}
-        
+
         curl_close($curl);
 
         return $answer;
@@ -58,18 +60,24 @@ class SerwerSMS_Sms_Helper_SerwerSMS {
 
 
     public function PrzetworzXML($akcja,$xml_file) {
-	$dom = new domDocument;
-	$dom->loadXML($xml_file);
-	$xml = simplexml_import_dom($dom);
+    
+    if(!empty($xml_file)){
+        $dom = new domDocument;
+        $dom->loadXML($xml_file);
+        $xml = simplexml_import_dom($dom);
+    }
 	
 	if (isset($xml->Blad)) {
             
-		$numer = $_POST['numer'];
+		$numer = (isset($_POST['numer']) and !empty($_POST['numer'])) ? addslashes(htmlspecialchars($_POST['numer'])) : '';
 		$przyczyna = $xml->Blad;
 		return $przyczyna;
                 
 	} elseif ($akcja=="wyslij_sms") {
-            
+        $wynik = array();
+		$wyslane = array();
+		$niewyslane = array();
+		
 		if(isset($xml->Odbiorcy->Skolejkowane)){
                     $i = 0;
 			foreach($xml->Odbiorcy->Skolejkowane->SMS as $sms) {
@@ -94,6 +102,7 @@ class SerwerSMS_Sms_Helper_SerwerSMS {
                 return $wynik;
                 
 	} elseif ($akcja=="ilosc_sms") {
+		$limity = array();
 		if(isset($xml->SMS)){
                         $i = 0;
 			foreach($xml->SMS as $sms) {
@@ -109,6 +118,7 @@ class SerwerSMS_Sms_Helper_SerwerSMS {
                 return $limity;
                 
 	} elseif ($akcja=="nazwa_nadawcy") {
+			$lista = array();
             if(isset($xml->NADAWCA)){
                 foreach($xml->NADAWCA as $nadawca){
                     $lista[self::xml_attribute($nadawca,'nazwa')] = $nadawca;
@@ -142,6 +152,7 @@ class SerwerSMS_Sms_Helper_SerwerSMS {
     }
     
     public function korektaNumerow($numery){
+		$result = array();
         if(is_array($numery)){
             foreach($numery as $numer){
                 $numer = str_replace(" ","",$numer);
@@ -204,12 +215,20 @@ class SerwerSMS_Sms_Helper_SerwerSMS {
         return Mage::getStoreConfig('smsconfig_section/powiadomienia/wstrzymanie');
     }
     
+    public function powiadomienieStatus(){
+        return Mage::getStoreConfig('smsconfig_section/powiadomienia/status');
+    }
+    
     public function szablonWstrzymanie(){
         return Mage::getStoreConfig('smsconfig_section/tekstysms/tekst_wstrzymanie');
     }
     
     public function szablonOdblokowanie(){
         return Mage::getStoreConfig('smsconfig_section/tekstysms/tekst_odblokowanie');
+    }
+    
+    public function szablonStatus(){
+        return Mage::getStoreConfig('smsconfig_section/tekstysms/tekst_status');
     }
     
     public function powiadomienieStanKonta(){
@@ -223,7 +242,7 @@ class SerwerSMS_Sms_Helper_SerwerSMS {
         $parametry['login'] = $this->getApiLogin();
         $parametry['haslo'] = $this->getApiPassword();
         
-        $xml = $this->wyslij_sms(array(login => $parametry['login'], haslo => $parametry['haslo'], numer => $parametry['odbiorcy'], wiadomosc => $parametry['tresc'], nadawca => $parametry['nadawca']));
+        $xml = $this->wyslij_sms(array('login' => $parametry['login'], 'haslo' => $parametry['haslo'], 'numer' => $parametry['odbiorcy'], 'wiadomosc' => $parametry['tresc'], 'nadawca' => $parametry['nadawca']));
         $dane = $this->PrzetworzXML("wyslij_sms",$xml);
         
         if($stanKonta){
@@ -302,7 +321,7 @@ class SerwerSMS_Sms_Helper_SerwerSMS {
             $parametry['haslo'] = $this->getApiPassword();
             $parametry['odbiorcy'] = $this->numeryAdministratora();
 
-            $xml = $this->ilosc_sms(array(login => $parametry['login'], haslo => $parametry['haslo']));
+            $xml = $this->ilosc_sms(array('login' => $parametry['login'], 'haslo' => $parametry['haslo']));
             $dane = $this->PrzetworzXML("ilosc_sms",$xml);
 
             foreach($dane as $sms){

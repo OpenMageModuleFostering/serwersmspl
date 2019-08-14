@@ -105,9 +105,11 @@ $nadawcy = $this->nadawcyLista();
                     <select name="numer_lista">
                     <?php
                     $kontakty = $this->kontaktyLista();
-                    foreach($kontakty as $kontakt){
-                        echo '<option value="'.$kontakt['telefon'].'">'.$kontakt['name'].' ('.$kontakt['telefon'].')</option>';
-                    }
+					if(is_array($kontakty) and !empty($kontakty)){
+						foreach($kontakty as $kontakt){
+							echo '<option value="'.$kontakt['telefon'].'">'.$kontakt['name'].' ('.$kontakt['telefon'].')</option>';
+						}
+					}
                     ?>
                     </select>
                 </td>
@@ -116,11 +118,13 @@ $nadawcy = $this->nadawcyLista();
                     <select name="numer_grupa">
                     <?php
                     $grupy = $this->grupyLista();
-                    foreach($grupy as $grupa){
-                        if($grupa['id'] != 0){
-                            echo '<option value="'.$grupa['id'].'">'.$grupa['name'].'</option>';
-                        }
-                    }
+					if(is_array($grupy) and !empty($grupy)){
+						foreach($grupy as $grupa){
+							if($grupa['id'] != 0){
+								echo '<option value="'.$grupa['id'].'">'.$grupa['name'].'</option>';
+							}
+						}
+					}
                     ?>
                     </select>
                 </td>

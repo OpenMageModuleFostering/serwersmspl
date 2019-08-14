@@ -109,14 +109,16 @@ $dane = $this->pokazFaktury();
          */
         
         $key = Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_index","podgladfaktury");
-        foreach($tablica as $pole){
-            $link = Mage::helper("adminhtml")->getUrl("serwersms/adminhtml_index/podgladfaktury/",array("faktura" => $pole['id'], "key" => $key));
-            echo '
-                <tr>
-                    <td>'.$pole['numer'].'</td><td>'.$pole['rozliczono'].'</td><td>'.$pole['kwota'].'</td><td>'.$pole['termin'].'</td><td><a href="'.$link.'">podgląd</a></td>
-                </tr>
-                ';
-        }
+		if(is_array($tablica) and !empty($tablica)){
+			foreach($tablica as $pole){
+				$link = Mage::helper("adminhtml")->getUrl("serwersms/adminhtml_index/podgladfaktury/",array("faktura" => $pole['id'], "key" => $key));
+				echo '
+					<tr>
+						<td>'.$pole['numer'].'</td><td>'.$pole['rozliczono'].'</td><td>'.$pole['kwota'].'</td><td>'.$pole['termin'].'</td><td><a href="'.$link.'">podgląd</a></td>
+					</tr>
+					';
+			}
+		}
         echo '<tr><td colspan="5" align="center" class="naglowek_serwersms">'.$paginator.'</td></tr>';
     } else {
         echo '<tr><td colspan="5">';
