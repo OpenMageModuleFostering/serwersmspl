@@ -71,15 +71,15 @@ $dane = $this->pokazFaktury();
         $key_pag = Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_index","faktury");
         
         for($i=1;$i<=$liczba_stron;$i++){
-            $link = Mage::helper("adminhtml")->getUrl("sms/adminhtml_index/faktury/",array("strona" => $i, "key" => $key_pag));
+            $link = Mage::helper("adminhtml")->getUrl("serwersms/adminhtml_index/faktury/",array("strona" => $i, "key" => $key_pag));
             if($i == $aktywna_strona){
                 $wszystkie_strony[$i] = $i;
             } else {
                 $wszystkie_strony[$i] = '<a href="'.$link.'">'.$i.'</a>';
             }
         }
-        $poczatek = Mage::helper("adminhtml")->getUrl("sms/adminhtml_index/faktury/",array("strona" => 1, "key" => $key_pag));
-        $koniec = Mage::helper("adminhtml")->getUrl("sms/adminhtml_index/faktury/",array("strona" => $liczba_stron, "key" => $key_pag));
+        $poczatek = Mage::helper("adminhtml")->getUrl("serwersms/adminhtml_index/faktury/",array("strona" => 1, "key" => $key_pag));
+        $koniec = Mage::helper("adminhtml")->getUrl("serwersms/adminhtml_index/faktury/",array("strona" => $liczba_stron, "key" => $key_pag));
         
         if($liczba_stron<=11){
             foreach($wszystkie_strony as $strona){
@@ -110,7 +110,7 @@ $dane = $this->pokazFaktury();
         
         $key = Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_index","podgladfaktury");
         foreach($tablica as $pole){
-            $link = Mage::helper("adminhtml")->getUrl("sms/adminhtml_index/podgladfaktury/",array("faktura" => $pole['id'], "key" => $key));
+            $link = Mage::helper("adminhtml")->getUrl("serwersms/adminhtml_index/podgladfaktury/",array("faktura" => $pole['id'], "key" => $key));
             echo '
                 <tr>
                     <td>'.$pole['numer'].'</td><td>'.$pole['rozliczono'].'</td><td>'.$pole['kwota'].'</td><td>'.$pole['termin'].'</td><td><a href="'.$link.'">podgląd</a></td>

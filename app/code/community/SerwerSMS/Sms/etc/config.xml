@@ -2,7 +2,7 @@
 <config>
      <modules>
         <SerwerSMS_Sms>
-          <version>1.0.0</version>
+          <version>1.0.1</version>
         </SerwerSMS_Sms>
      </modules>
      
@@ -13,7 +13,7 @@
               <use>standard</use>
               <args>
                  <module>SerwerSMS_Sms</module>
-                 <frontName>sms</frontName>
+                 <frontName>serwersms</frontName>
               </args>
            </routeurfrontend>
        </routers>
@@ -22,57 +22,57 @@
     
      <admin>
          <routers>
-             <sms>
+             <serwersms>
                  <use>admin</use>
                  <args>
                      <module>SerwerSMS_Sms</module>
-                     <frontName>sms</frontName>
+                     <frontName>serwersms</frontName>
                  </args>
-             </sms>
+             </serwersms>
          </routers>
      </admin>
      
      <adminhtml>
        <layout>
            <updates>
-               <sms>
+               <serwersms>
                    <file>serwersms/sms.xml</file>
-               </sms>
+               </serwersms>
            </updates>
        </layout>
          <menu>
-             <sms translate="title" module="adminhtml">
+             <serwersms translate="title" module="adminhtml">
                  <title>SerwerSMS</title>
                  <sort_order>100</sort_order>
                  <children>
                      <wyslane>
                          <title>Wysłane wiadomości</title>
-                         <action>sms/adminhtml_index/index</action>
+                         <action>serwersms/adminhtml_index/index</action>
                          <sort_order>100</sort_order>
                      </wyslane>
                      <niewyslane>
                          <title>Niewysłane wiadomości</title>
-                         <action>sms/adminhtml_index/niewyslane</action>
+                         <action>serwersms/adminhtml_index/niewyslane</action>
                          <sort_order>200</sort_order>
                      </niewyslane>
                      <odpowiedzi>
                          <title>Odpowiedzi SMS</title>
-                         <action>sms/adminhtml_index/odpowiedzi</action>
+                         <action>serwersms/adminhtml_index/odpowiedzi</action>
                          <sort_order>300</sort_order>
                      </odpowiedzi>
                      <wyslijsms>
                          <title>Wyślij SMS</title>
-                         <action>sms/adminhtml_index/wyslijsms</action>
+                         <action>serwersms/adminhtml_index/wyslijsms</action>
                          <sort_order>400</sort_order>
                      </wyslijsms>
                      <dane_konta>
                          <title>Dane konta</title>
-                         <action>sms/adminhtml_index/danekonta</action>
+                         <action>serwersms/adminhtml_index/danekonta</action>
                          <sort_order>500</sort_order>
                      </dane_konta>
                      <faktury>
                          <title>Faktury</title>
-                         <action>sms/adminhtml_index/faktury</action>
+                         <action>serwersms/adminhtml_index/faktury</action>
                          <sort_order>600</sort_order>
                      </faktury>
                      <konfiguracja>
@@ -81,7 +81,7 @@
                          <sort_order>700</sort_order>
                      </konfiguracja>
                  </children>
-             </sms>
+             </serwersms>
          </menu>
          
          <acl>
@@ -109,9 +109,9 @@
     
     <global>
         <blocks>
-            <sms>
+            <serwersms>
                 <class>SerwerSMS_Sms_Block</class>
-            </sms>
+            </serwersms>
         </blocks>
         
         <models>

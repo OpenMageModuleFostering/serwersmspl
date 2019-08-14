@@ -50,7 +50,7 @@
 <?php
 $nadawcy = $this->nadawcyLista();
 ?>
-<form action="<?php echo Mage::getUrl('sms/adminhtml_index/wysylkaform'); ?>" method="post">
+<form action="<?php echo Mage::getUrl('serwersms/adminhtml_index/wysylkaform'); ?>" method="post">
     <fieldset>
         <table class="ramka_serwersms">
             <tr>
@@ -74,7 +74,7 @@ $nadawcy = $this->nadawcyLista();
                     <?php
                             if(is_array($nadawcy)){
                                 foreach($nadawcy['wlasne'] as $nazwa => $status){
-                                if($status == 'Autoryzowano'){
+                                if($status == 'Autoryzowano' or $status == '4005'){
                                     echo '<option value="'.$nazwa.'">'.$nazwa.'</option>';
                                 }
                             }

@@ -2,8 +2,7 @@
 /**
  *
  *	@copyright  Copyright (c) 2012-2013 SerwerSMS.pl
- *      @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- *      @author     Serwer SMS (http://www.serwersms.pl)
+ *	http://www.serwersms.pl
  */
 
 class SerwerSMS_Sms_Block_Adminhtml_NiewyslaneGrid extends Mage_Adminhtml_Block_Widget_Grid_Container{
@@ -12,7 +11,7 @@ class SerwerSMS_Sms_Block_Adminhtml_NiewyslaneGrid extends Mage_Adminhtml_Block_
         
         // gdzie jest kontroler
         $this->_controller = 'adminhtml_niewyslane';
-        $this->_blockGroup = 'sms';
+        $this->_blockGroup = 'serwersms';
         
         // tekst w naglowku admina
         $this->_headerText = 'Wiadomości niewyslane';

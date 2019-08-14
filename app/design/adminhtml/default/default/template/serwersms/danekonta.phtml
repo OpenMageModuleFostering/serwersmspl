@@ -62,7 +62,7 @@ $dane = $this->pokazDaneKonta();
     <tr>
         <td><strong>Nazwy nadawcy:</strong><br>
             <?php $key = Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_index","dodajnazwe"); ?>
-            (<a href="<?php echo Mage::helper("adminhtml")->getUrl("sms/adminhtml_index/dodajnazwe/",array("key" => $key)); ?>">Dodaj nową nazwę</a>)</td>
+            (<a href="<?php echo Mage::helper("adminhtml")->getUrl("serwersms/adminhtml_index/dodajnazwe/",array("key" => $key)); ?>">Dodaj nową nazwę</a>)</td>
         <td></td><td></td>
     </tr>
     <?php

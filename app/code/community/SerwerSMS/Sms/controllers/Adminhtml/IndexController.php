@@ -2,14 +2,13 @@
 /**
  *
  *	@copyright  Copyright (c) 2012-2013 SerwerSMS.pl
- *      @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- *      @author     Serwer SMS (http://www.serwersms.pl)
+ *	http://www.serwersms.pl
  */
 
 class SerwerSMS_Sms_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Action{
     
     protected function _initAction(){
-        $this->loadLayout()->_setActiveMenu('sms/wyslane')
+        $this->loadLayout()->_setActiveMenu('serwersms/wyslane')
                 ->_addBreadcrumb('sms Manager','sms Manager');
         return $this;
     }
@@ -22,38 +21,38 @@ class SerwerSMS_Sms_Adminhtml_IndexController extends Mage_Adminhtml_Controller_
     
     public function niewyslaneAction(){
         
-        $this->loadLayout()->_setActiveMenu('sms/niewyslane')
+        $this->loadLayout()->_setActiveMenu('serwersms/niewyslane')
                 ->_addBreadcrumb('sms Manager','sms Manager');
         $this->renderLayout();
     }
     
     public function odpowiedziAction(){
         
-        $this->loadLayout()->_setActiveMenu('sms/odpowiedzi')
+        $this->loadLayout()->_setActiveMenu('serwersms/odpowiedzi')
                 ->_addBreadcrumb('sms Manager','sms Manager');
         $this->renderLayout();
     }
     
     public function danekontaAction(){
-        $this->loadLayout()->_setActiveMenu('sms/danekonta')
+        $this->loadLayout()->_setActiveMenu('serwersms/danekonta')
                 ->_addBreadcrumb('sms Manager','sms Manager');
         $this->renderLayout();
     }
     
     public function fakturyAction(){
-        $this->loadLayout()->_setActiveMenu('sms/faktury')
+        $this->loadLayout()->_setActiveMenu('serwersms/faktury')
                 ->_addBreadcrumb('sms Manager','sms Manager');
         $this->renderLayout();
     }
     
     public function dodajnazweAction(){
-        $this->loadLayout()->_setActiveMenu('sms/danekonta')
+        $this->loadLayout()->_setActiveMenu('serwersms/danekonta')
                 ->_addBreadcrumb('sms Manager','sms Manager');
         $this->renderLayout();
     }
     
     public function wyslijsmsAction(){
-        $this->loadLayout()->_setActiveMenu('sms/wyslijsms')
+        $this->loadLayout()->_setActiveMenu('serwersms/wyslijsms')
                 ->_addBreadcrumb('sms Manager','sms Manager');
         $this->renderLayout();
     }

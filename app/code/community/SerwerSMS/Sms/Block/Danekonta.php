@@ -2,8 +2,7 @@
 /**
  *
  *	@copyright  Copyright (c) 2012-2013 SerwerSMS.pl
- *      @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- *      @author     Serwer SMS (http://www.serwersms.pl)
+ *	http://www.serwersms.pl
  */
 
 class SerwerSMS_Sms_Block_Danekonta extends Mage_Core_Block_Template{
@@ -55,6 +54,10 @@ class SerwerSMS_Sms_Block_Danekonta extends Mage_Core_Block_Template{
         
         $xml = $helper->faktury(array(login => $api['login'], haslo => $api['haslo'], operacja => "lista"));
         $dane = $helper->PrzetworzXML("faktury",$xml);
+        
+//        for($i=0;$i<15;$i++){
+//            $dane[$i] = array('id' => $i, 'numer' => $i, 'rozliczono' => rand(1,60).','.rand(10,80), 'kwota' => rand(1,60).','.rand(10,80), 'termin' => '2012-'.rand(1,12).'-'.rand(1,30));
+//        }
         
         return $dane;
         

@@ -2,8 +2,7 @@
 /**
  *
  *	@copyright  Copyright (c) 2012-2013 SerwerSMS.pl
- *      @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- *      @author     Serwer SMS (http://www.serwersms.pl)
+ *	http://www.serwersms.pl
  */
 
 class SerwerSMS_Sms_Block_Adminhtml_Wyslane_Grid extends Mage_Adminhtml_Block_Widget_Grid{
@@ -80,6 +79,10 @@ class SerwerSMS_Sms_Block_Adminhtml_Wyslane_Grid extends Mage_Adminhtml_Block_Wi
                 ));
         return parent::_prepareColumns();
     }
+    
+//    public function getRowUrl($row){
+//        return $this->getUrl('*/*/edit',array('id' => $row->getId()));
+//    }
     
 }
 

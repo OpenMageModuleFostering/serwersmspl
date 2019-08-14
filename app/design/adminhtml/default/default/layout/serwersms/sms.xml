@@ -1,50 +1,51 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
-    <sms_adminhtml_index_index>
+    <serwersms_adminhtml_index_index>
         <reference name="content">
-            <block type="sms/adminhtml_wyslaneGrid" name="wyslane">
+            <block type="serwersms/adminhtml_wyslaneGrid" name="wyslane">
+                <action method="removeButton">
+                    <param>add</param>
+                </action>
+            </block>
+            <!--<block type="test/monblock" name="afficher_monblock" template="test/afficher.phtml" />-->
+        </reference>
+    </serwersms_adminhtml_index_index>
+    <serwersms_adminhtml_index_niewyslane>
+        <reference name="content">
+            <block type="serwersms/adminhtml_niewyslaneGrid" name="niewyslane">
                 <action method="removeButton">
                     <param>add</param>
                 </action>
             </block>
         </reference>
-    </sms_adminhtml_index_index>
-    <sms_adminhtml_index_niewyslane>
+    </serwersms_adminhtml_index_niewyslane>
+    <serwersms_adminhtml_index_odpowiedzi>
         <reference name="content">
-            <block type="sms/adminhtml_niewyslaneGrid" name="niewyslane">
+            <block type="serwersms/adminhtml_odpowiedziGrid" name="odpowiedzi">
                 <action method="removeButton">
                     <param>add</param>
                 </action>
             </block>
         </reference>
-    </sms_adminhtml_index_niewyslane>
-    <sms_adminhtml_index_odpowiedzi>
+    </serwersms_adminhtml_index_odpowiedzi>
+    <serwersms_adminhtml_index_danekonta>
         <reference name="content">
-            <block type="sms/adminhtml_odpowiedziGrid" name="odpowiedzi">
-                <action method="removeButton">
-                    <param>add</param>
-                </action>
-            </block>
+            <block type="serwersms/danekonta" name="danekonta_danekonta" template="serwersms/danekonta.phtml" />
         </reference>
-    </sms_adminhtml_index_odpowiedzi>
-    <sms_adminhtml_index_danekonta>
+    </serwersms_adminhtml_index_danekonta>
+    <serwersms_adminhtml_index_faktury>
         <reference name="content">
-            <block type="sms/danekonta" name="danekonta_danekonta" template="serwersms/danekonta.phtml" />
+            <block type="serwersms/danekonta" name="faktury_danekonta" template="serwersms/faktury.phtml" />
         </reference>
-    </sms_adminhtml_index_danekonta>
-    <sms_adminhtml_index_faktury>
+    </serwersms_adminhtml_index_faktury>
+    <serwersms_adminhtml_index_dodajnazwe>
         <reference name="content">
-            <block type="sms/danekonta" name="faktury_danekonta" template="serwersms/faktury.phtml" />
+            <block type="serwersms/danekonta" name="dodajnazwe_danekonta" template="serwersms/dodajnazwe.phtml" />
         </reference>
-    </sms_adminhtml_index_faktury>
-    <sms_adminhtml_index_dodajnazwe>
+    </serwersms_adminhtml_index_dodajnazwe>
+    <serwersms_adminhtml_index_wyslijsms>
         <reference name="content">
-            <block type="sms/danekonta" name="dodajnazwe_danekonta" template="serwersms/dodajnazwe.phtml" />
+            <block type="serwersms/wyslijsms" name="formularzsms_wyslijsms" template="serwersms/formularzsms.phtml" />
         </reference>
-    </sms_adminhtml_index_dodajnazwe>
-    <sms_adminhtml_index_wyslijsms>
-        <reference name="content">
-            <block type="sms/wyslijsms" name="formularzsms_wyslijsms" template="serwersms/formularzsms.phtml" />
-        </reference>
-    </sms_adminhtml_index_wyslijsms>
+    </serwersms_adminhtml_index_wyslijsms>
 </layout>

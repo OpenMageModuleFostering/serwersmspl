@@ -2,8 +2,7 @@
 /**
  *
  *	@copyright  Copyright (c) 2012-2013 SerwerSMS.pl
- *      @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- *      @author     Serwer SMS (http://www.serwersms.pl)
+ *	http://www.serwersms.pl
  */
 
 class SerwerSMS_Sms_Model_Nadawcy extends Mage_Core_Model_Abstract {
@@ -30,13 +29,13 @@ class SerwerSMS_Sms_Model_Nadawcy extends Mage_Core_Model_Abstract {
             $res = array(array('label' => '', 'value' => ''));
             
             foreach($nazwy_nadawcy as $nazwa => $status){
-                if($status == 'Autoryzowano'){
+                if($status == 'Autoryzowano' or $status == '4005'){
                     $res[] = array('label' => $nazwa, 'value' => $nazwa);
                 }
             }
             
             foreach($predefiniowane as $nazwa => $status){
-                if($status == 'Autoryzowano'){
+                if($status == 'Autoryzowano' or $status == '4005'){
                     $res[] = array('label' => $nazwa, 'value' => $nazwa);
                 }
             }
@@ -45,6 +44,7 @@ class SerwerSMS_Sms_Model_Nadawcy extends Mage_Core_Model_Abstract {
             $res = array(array('label' => '', 'value' => ''));
         }
 
+        //ksort($res);
         return $res;
     }
     
